@@ -3,7 +3,7 @@
 ![Versión](https://img.shields.io/badge/Versión-1.0.0-blue) ![Licencia](https://img.shields.io/badge/Licencia-MIT-green) ![Go](https://img.shields.io/badge/Go-1.16+-00ADD8) ![WebAssembly](https://img.shields.io/badge/WebAssembly-Compatible-FF6600)
 
 <p align="center">
-  <img src="docs/images/calculator-preview.png" alt="Calculadora Calc-8 Preview" width="400">
+  <img src="docs/images/calculator-preview.png" alt="Calculadora Calc-8 Preview" width="800">
 </p>
 
 ## 📝 Descripción
@@ -35,12 +35,12 @@ Calc-8 es una calculadora web retro que implementa operaciones matemáticas usan
    cd calc-8-wasm
    ```
 
-2. Compila el código Go a WebAssembly
+2. Compila el codigo Go a WebAssembly
    ```bash
    GOOS=js GOARCH=wasm go build -o web/main.wasm ./cmd/web
    ```
 
-3. Sirve el contenido estático
+3. Ejecuta el server
    ```bash
    cd web
    python -m http.server 8080
@@ -94,16 +94,6 @@ Las contribuciones son bienvenidas. Por favor, sigue estos pasos:
 3. Haz commit de tus cambios (`git commit -m 'Añadir nueva funcionalidad'`)
 4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`)
 5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## 📞 Contacto
-
-Creado por [Tu Nombre] - [tu.email@example.com]
-
----
 
 <p align="center">
   Hecho con mucho ☕
