@@ -1,0 +1,27 @@
+graph TD
+    subgraph "Navegador Web"
+        subgraph "Frontend JavaScript"
+            JS["main.js"]
+            UI["Interfaz de Usuario<br>HTML/CSS"]
+            JS -- "Actualiza" --> UI
+            UI -- "Eventos de usuario" --> JS
+        end
+        
+        subgraph "WebAssembly"
+            WASM["Módulo WebAssembly<br>(compilado desde Go)"]
+            WASM_API["API de Operaciones<br>Matemáticas"]
+            WASM -- "Implementa" --> WASM_API
+        end
+        
+        BRIDGE["wasm_exec.js<br>(Puente JS-WASM)"]
+        
+        JS -- "Invoca funciones" --> BRIDGE
+        BRIDGE -- "Llama" --> WASM_API
+        WASM_API -- "Retorna resultados" --> JS
+    end
+    
+    style UI fill:#f9f,stroke:#333,stroke-width:2px
+    style JS fill:#bbf,stroke:#333,stroke-width:2px
+    style WASM fill:#bfb,stroke:#333,stroke-width:2px
+    style WASM_API fill:#bfb,stroke:#333,stroke-width:2px
+    style BRIDGE fill:#fbb,stroke:#333,stroke-width:2px

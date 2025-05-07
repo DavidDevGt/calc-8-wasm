@@ -1,0 +1,33 @@
+sequenceDiagram
+    participant Usuario as Usuario
+    participant UI as Interfaz de Usuario
+    participant JS as JavaScript (main.js)
+    participant Bridge as wasm_exec.js
+    participant WASM as WebAssembly (Go)
+    
+    Usuario->>UI: Ingresa números y operador
+    UI->>JS: Eventos de botones/teclado
+    
+    JS->>JS: Actualiza estado (current, operator, operand)
+    JS->>UI: Actualiza display
+    
+    Note over JS,WASM: Al presionar "=" o encadenar operación
+    
+    JS->>Bridge: Invoca goAdd(a, b), goSub(a, b), <br>goMul(a, b), o goDiv(a, b)
+    Bridge->>WASM: Convierte parámetros <br>y llama funciones Go
+    
+    WASM->>WASM: Ejecuta operación matemática
+    WASM-->>Bridge: Retorna resultado
+    Bridge-->>JS: Devuelve resultado convertido
+    
+    JS->>UI: Actualiza display con resultado
+    
+    Note over JS,WASM: Manejo de errores (ej. división por cero)
+    
+    alt División por cero
+        JS->>Bridge: goDiv(a, 0)
+        Bridge->>WASM: Detecta división por cero
+        WASM-->>Bridge: Retorna "∞"
+        Bridge-->>JS: Devuelve "∞"
+        JS->>UI: Muestra "∞" en display
+    end
